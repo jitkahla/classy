@@ -94,6 +94,9 @@ input {
     
 }
 
+.error {
+    color: var(--red);
+}
 
 
 @media (max-width: 599px) {

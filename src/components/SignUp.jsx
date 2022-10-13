@@ -4,16 +4,26 @@ import './SignForm.css';
 const SignUp = () => {
 
     // Result of signup form
-const [newUser, setNewUser] = useState({
+const [user, setUser] = useState({
     id: "",
     fname:"",
     lname:"",
     email:"",
-    password:""
+    password:"",
+    repassword:""
 })
 
-const handleSignUp = () => {
+const [error, setError] = useState(false);
 
+const errorMesage = <p className="error">"Oops! Passwords don't match."</p>;
+
+const handleSignUp = (e) => {
+    e.preventDefault();
+    if (user.password !== user.repassword) {
+// show errorMesage
+setError(true);
+    }
+    console.log(user);
     }
 
     return <main>
@@ -21,21 +31,21 @@ const handleSignUp = () => {
     <h1>
     Get started absolutely free.
     </h1>
-    <p>Enter your details below.</p>
+    {error? errorMesage : <p>Enter your details below.</p>}
     
-    <form className="sign-form" onSubmit={handleSignup}>
+    <form className="sign-form" onSubmit={handleSignUp}>
 
         
         <label>
         First Name
         <br />
-        <input type="text" id="fname" required />
+        <input type="text" id="fname" required onChange={(e) => setUser({...user, fname: e.target.value})} value={user.fname}/>
         </label>
 
         <label>
         Last Name
         <br />
-        <input type="text" id="lname" />
+        <input type="text" id="lname" onChange={(e) => setUser({...user, lname: e.target.value})} value={user.lname}/>
         </label>
 
         <label>
@@ -53,7 +63,7 @@ const handleSignUp = () => {
         <label>
         Repeat Password
         <br />
-        <input type="password" id="repass" required/>
+        <input type="password" id="repass" required onChange={(e) => setUser({...user, repassword: e.target.value})} value={user.repassword} />
         </label>
     
 

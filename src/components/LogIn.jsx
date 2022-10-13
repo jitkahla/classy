@@ -14,9 +14,12 @@ const handleLogin = (e) => {
     e.preventDefault();
     console.log(user);
 
+//if user email and password is not valid, setError(true)
+
 }
 
 // Error message shows when user try to log in with invalid data
+const [error, setError] = useState(false);
 const errorMesage = <div className="error">"Oops! That email and pasword combination is not valid."</div>;
 
 /* // Calling the API
@@ -48,7 +51,7 @@ useEffect(() => {
     <h1>
     Sign in to Classy.
     </h1>
-    <p>Enter your details below.</p>
+    {error? errorMesage : <p>Enter your details below.</p>}
     
     <form className="sign-form" onSubmit={handleLogin}>
 
