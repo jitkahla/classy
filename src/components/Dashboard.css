@@ -1,0 +1,152 @@
+.container {
+    background-color: var(--background);
+    color: var(--dark-grey);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+
+.user-controls {
+    padding: 1rem;
+}
+
+.user {
+    background-color: var(--light-grey);
+    border-radius: 50%;
+    color: var(--grey);
+    padding: 0.5rem;
+}
+
+.arrow.user {
+    background: center url('/public/img/arrow-light.png') no-repeat;
+    width: 2rem;
+    height: 1rem;
+    display: inline-block;
+}
+
+.dashboard-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.arrow.classes {
+    background: center url('/public/img/arrow-dark.png') no-repeat;
+    width: 1rem;
+    height: 0.8rem;
+    display: inline-block;
+}
+
+.tabs {
+    background: left url('/public/img/tabs-dark.png') no-repeat;
+    width: 2rem;
+    height: 1rem;
+    display: inline-block;
+}
+.rows {
+    background: left url('/public/img/rows-light.png') no-repeat;
+    width: 2rem;
+    height: 1rem;
+    display: inline-block;
+}
+
+.class-box {
+    background-color: var(--white);
+    margin: 1rem;
+    padding: 1rem;
+    color: var(--grey);
+}
+
+.date, .class-box h3 {
+    font-size: 0.7rem;
+
+}
+
+.class-box h2 {
+    color: var(--dark-grey);
+}
+
+.class-box h3, .class-box h2 {
+    font-weight: 400;
+}
+
+.description {
+    padding: 2rem 0;
+}
+
+.class-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.class-controls img {
+    display: inline-block;
+    padding-right: 0.5rem;
+}
+
+.plus {
+    background-color: var(--dark-grey);
+    color: var(--white);
+    font-size: 1.5rem;
+    padding: 1rem;
+    width: 3.5rem;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 3px 3px 5px var(--grey);
+    display: block;
+    margin: 0 1rem 1rem auto;
+
+}
+
+.dashboard-controls span {
+    padding-right: 1rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 599px) {
+    .dashboard-desktop {
+        display: none;
+    }
+}
+
+@media (min-width: 600px) {
+    .class.container {
+        flex-direction: column;
+    }
+    .class-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .class-box {
+        min-width: 20rem;
+    }
+    .arrow.classes {
+        display: none;
+    }
+    .dashboard-mobile {
+        display: none;
+    }
+    header .dashboard-desktop {
+        padding: 0 0.5rem 0;
+        color: var(--grey);
+    }
+    .dashboard-controls, 
+    .class-list {
+        padding: 1rem 5rem 0;
+    }
+
+    .class-box {
+        margin: 0;
+    }
+}

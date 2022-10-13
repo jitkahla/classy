@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;700&display=swap');
+
+:root {
+  --white: #FFFFFF;
+  --background: #F5F5F5;
+  --red: #FF0000;
+  --green: #22D486;
+  --light-grey: #CACDD0;
+  --grey: #949EA8;
+  --dark-grey: #323C46;
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-family: 'Hind', sans-serif;
+  color: var(--dark-grey);
+}
+
+.button {
+  background-color: var(--green);
+  color: var(--white);
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  padding: 1rem 4rem;
+}
+
