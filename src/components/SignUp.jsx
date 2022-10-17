@@ -5,9 +5,8 @@ const SignUp = () => {
 
     // Result of signup form
 const [user, setUser] = useState({
-    id: "",
-    fname:"",
-    lname:"",
+    first_name:"",
+    last_name:"",
     email:"",
     password:"",
     repassword:""
@@ -20,11 +19,35 @@ const errorMesage = <p className="error">"Oops! Passwords don't match."</p>;
 const handleSignUp = (e) => {
     e.preventDefault();
     if (user.password !== user.repassword) {
+        
 // show errorMesage
-setError(true);
+    setError(true);
+    return;
+    };
+    delete user.repassword;
+    if (user.last_name === "") {
+        delete user.last_name
     }
     console.log(user);
-    }
+// calling API
+const optimist_api_key = '7prQ7FbeO9bvbdPjMCl6';
+fetch('https://testproject.optimistinc.com/api/signup', {
+    method: 'POST',
+    headers: {
+      'optimist_api_key': optimist_api_key,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  })
+  .then((response) => response.json)
+  .then((result) => {
+  if (result.id !== "") {
+    alert("Thank you. Your registration was successful.");
+    window.location = 'dashboard';
+  }
+  });   
+  }
+
 
     return <main>
 
@@ -39,13 +62,13 @@ setError(true);
         <label>
         First Name
         <br />
-        <input type="text" id="fname" required onChange={(e) => setUser({...user, fname: e.target.value})} value={user.fname}/>
+        <input type="text" id="fname" required onChange={(e) => setUser({...user, first_name: e.target.value})} value={user.first_name}/>
         </label>
 
         <label>
         Last Name
         <br />
-        <input type="text" id="lname" onChange={(e) => setUser({...user, lname: e.target.value})} value={user.lname}/>
+        <input type="text" id="lname" onChange={(e) => setUser({...user, last_name: e.target.value})} value={user.last_name}/>
         </label>
 
         <label>

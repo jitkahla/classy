@@ -21,11 +21,9 @@ createRoot(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<App />}>
-        <Route path='/login' element={<LogIn />}></Route>
-        <Route path='/signup' element={<SignUp />}></Route>
-      </Route>
-      <Route path='/dashboard' element={<Dashboard />}></Route>
+      <Route index element={<App />}></Route>
+      <Route path='signform' element={<SignForm />}></Route>
+      <Route path='dashboard' element={<Dashboard />}></Route>
       
     </Routes>
     </BrowserRouter>

@@ -8,12 +8,12 @@ const SignForm = () => {
 // State for rendering login form or signup form
 const [registered, setRegistered] = useState(true);
 
+const signText = ["Don't have account?", "Already have an account?"];
+const buttonText = ["SIGN UP", "SIGN IN"];
+
 
 // Successful login
 const [isSubmitted, setIsSubmitted] = useState(false);
-
-const signText = ["Don't have account?", "Already have an account?"];
-const buttonText = ["SIGN UP", "SIGN IN"];
 
 
   return (
@@ -38,7 +38,7 @@ const buttonText = ["SIGN UP", "SIGN IN"];
     <button className='sign-button' onClick={() => setRegistered(!registered)}>
         {registered ? buttonText[0] : buttonText[1]}
     </button></div> 
-
+    
     </div>
   );
 };

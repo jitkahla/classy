@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './SignForm.css';
 
 const LogIn = () => {
@@ -9,42 +9,37 @@ const [user, setUser] = useState({
     password: ""
 });
 
-// Function for submit the login form
-const handleLogin = (e) => {
-    e.preventDefault();
-    console.log(user);
-
-//if user email and password is not valid, setError(true)
-
-}
-
-// Error message shows when user try to log in with invalid data
 const [error, setError] = useState(false);
 const errorMesage = <div className="error">"Oops! That email and pasword combination is not valid."</div>;
 
-/* // Calling the API
-useEffect(() => {
-    fetch('https://testproject.optimistinc.com/api/login', {
+// Function for submit the login form
+const handleLogin = async (e) => {
+  e.preventDefault();
+    console.log(user);
+    const optimist_api_key = '7prQ7FbeO9bvbdPjMCl6';
+    try {
+      let res = await fetch('https://testproject.optimistinc.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'optimist_api_key': optimist_api_key,
         },
-        body: JSON.stringify({
-          user
-        }),
+        body: JSON.stringify(user),
       })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        if (result.message === "SUCCESS") {
-            alert("You are logged in.");
-
-            // else render the error mesage
-        }
-      });
       
-  }, []); */
-
+      if (res.status === 200) {
+        let resJson = await res.json();
+        alert("You are logged in.")
+        window.location = 'dashboard';
+      }
+      else { 
+        
+        // Error message shows when user try to log in with invalid data
+        setError(true);}
+    }
+    catch (err) {console.log(err)}
+  };
+    
 
     return <main>
 

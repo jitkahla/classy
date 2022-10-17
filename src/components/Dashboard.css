@@ -47,17 +47,27 @@ header {
     display: inline-block;
 }
 
-.tabs {
-    background: left url('/public/img/tabs-dark.png') no-repeat;
+.tabs, 
+.rows {
     width: 2rem;
     height: 1rem;
     display: inline-block;
 }
+
+.tabs {
+    background: left url('/public/img/tabs-light.png') no-repeat;
+    
+}
+.tabs.active {
+    background: left url('/public/img/tabs-dark.png') no-repeat;
+}
+
 .rows {
     background: left url('/public/img/rows-light.png') no-repeat;
-    width: 2rem;
-    height: 1rem;
-    display: inline-block;
+}
+
+.rows.active {
+    background: left url('/public/img/rows-dark.png') no-repeat;
 }
 
 .class-box {
@@ -65,15 +75,18 @@ header {
     margin: 1rem;
     padding: 1rem;
     color: var(--grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.date, .class-box h3 {
-    font-size: 0.7rem;
-
-}
 
 .class-box h2 {
     color: var(--dark-grey);
+}
+
+.class-box h3 {
+    padding-bottom: 2rem;
 }
 
 .class-box h3, .class-box h2 {
@@ -81,12 +94,13 @@ header {
 }
 
 .description {
-    padding: 2rem 0;
+    padding-bottom: 1rem;
 }
 
 .class-controls {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .class-controls img {
@@ -107,16 +121,54 @@ header {
     margin: 0 1rem 1rem auto;
 
 }
+/* display rows on desktop*/
+.row.class-list {
+    flex-direction: column;
+}
+.row.class-box {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.row.class-box .description{
+    padding: 0;
+}
+
+.row.class-numbers {
+    display: flex;
+}
+.row.class-numbers span {
+    padding: 0 1rem 0 2rem;
+}
 
 .dashboard-controls span {
     padding-right: 1rem;
     font-weight: 700;
     font-size: 0.8rem;
+    color: var(--grey);
+    cursor: pointer;
 }
 
-@media (max-width: 599px) {
-    .dashboard-desktop {
-        display: none;
+.dashboard-controls .active {
+    color: var(--dark-grey);
+}
+
+.dashboard-show select {
+    border: none;
+    background-color: var(--background);
+    appearance: none;
+    background: right center url('/public/img/arrow-dark.png') no-repeat;
+    font-family: 'Hind', sans-serif;
+    font-weight: 700;
+    color: var(--dark-grey);
+}
+
+@media (min-width: 600px) and  (max-width: 899px) {
+    .class-box {
+        font-size: smaller;
+    }
+    .button {
+        padding: 0.5rem 2rem;
     }
 }
 
@@ -127,9 +179,11 @@ header {
     .class-list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 1rem;
     }
     .class-box {
-        min-width: 20rem;
+        width: calc(50% - 1rem);
     }
     .arrow.classes {
         display: none;
@@ -137,7 +191,7 @@ header {
     .dashboard-mobile {
         display: none;
     }
-    header .dashboard-desktop {
+    header .dashboard-show {
         padding: 0 0.5rem 0;
         color: var(--grey);
     }
@@ -148,5 +202,11 @@ header {
 
     .class-box {
         margin: 0;
+    }
+}
+
+@media (min-width: 1100px) {
+    .class-box {
+        width: calc(33% - 2rem);
     }
 }
