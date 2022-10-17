@@ -50,28 +50,24 @@ return <div className='class container'>
 <div className='logo'>Classy.io</div>
 <div className='user-controls'>
 <span className='user'>TW</span>
-<span className='dashboard-desktop'>Tom Watts</span>
+<span className='user-fullname'>Tom Watts</span>
 <span className='arrow user'></span>
 </div>
 </header>
 
 <div className='dashboard-controls'>
-    <div className='dashboard-show'>
-{(window.innerWidth < 600) ? 
-<>
+    <div className='dashboard-show mobile'>
 <span>SHOW: </span>
 <select onChange={handleSelect}>
     <option value="all">ALL CLASSES</option>
     <option value="future">FUTURE CLASSES</option>
     <option value="past">PAST CLASSES</option>
 </select>
-</>
-:
-<><span className={classesList === "all" ? 'active' : null } onClick={() => setClassesList("all")}>ALL CLASSES</span>
+</div>
+    <div className='dashboard-show desktop'>
+<span className={classesList === "all" ? 'active' : null } onClick={() => setClassesList("all")}>ALL CLASSES</span>
 <span className={classesList === "future" ? 'active' : null }onClick={() => setClassesList("future")}>FUTURE CLASSES</span>
 <span className={classesList === "past" ? 'active' : null }onClick={() => setClassesList("past")}>PAST CLASSES</span>
-</>}
-
 </div>
 <div>
 <span className={tabs ? 'tabs active' : 'tabs'} onClick={() => setTabs(true)}></span>

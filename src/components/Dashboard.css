@@ -27,6 +27,10 @@ header {
     padding: 0.5rem;
 }
 
+.user-fullname {
+    padding-left: 1rem;
+}
+
 .arrow.user {
     background: center url('/public/img/arrow-light.png') no-repeat;
     width: 2rem;
@@ -162,6 +166,14 @@ header {
     font-weight: 700;
     color: var(--dark-grey);
 }
+@media (max-width: 599px) {
+    .dashboard-show.desktop {
+        display: none;
+    }
+    .user-fullname {
+        display: none;
+    }
+}
 
 @media (min-width: 600px) and  (max-width: 899px) {
     .class-box {
@@ -188,9 +200,7 @@ header {
     .arrow.classes {
         display: none;
     }
-    .dashboard-mobile {
-        display: none;
-    }
+    
     header .dashboard-show {
         padding: 0 0.5rem 0;
         color: var(--grey);
@@ -202,6 +212,9 @@ header {
 
     .class-box {
         margin: 0;
+    }
+    .dashboard-show.mobile {
+        display: none;
     }
 }
 
