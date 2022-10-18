@@ -11,7 +11,6 @@ const [user, setUser] = useState({
     password:"",
     repassword:""
 })
-
 const [error, setError] = useState(false);
 
 const errorMesage = <p className="error">"Oops! Passwords don't match."</p>;
@@ -43,7 +42,8 @@ fetch('https://testproject.optimistinc.com/api/signup', {
   .then((result) => {
   if (result.id !== "") {
     alert("Thank you. Your registration was successful.");
-    window.location = 'dashboard';
+    
+    window.location = 'dashboard'
   }
   });   
   }

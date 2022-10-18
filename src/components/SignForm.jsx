@@ -12,10 +12,6 @@ const signText = ["Don't have account?", "Already have an account?"];
 const buttonText = ["SIGN UP", "SIGN IN"];
 
 
-// Successful login
-const [isSubmitted, setIsSubmitted] = useState(false);
-
-
   return (
     <div className='container white'>
 
@@ -38,7 +34,7 @@ const [isSubmitted, setIsSubmitted] = useState(false);
     <button className='sign-button' onClick={() => setRegistered(!registered)}>
         {registered ? buttonText[0] : buttonText[1]}
     </button></div> 
-    
+
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SignForm.css';
+import { useLogin } from '../login-context';
 
 const LogIn = () => {
 
@@ -8,7 +9,7 @@ const [user, setUser] = useState({
     email: "",
     password: ""
 });
-
+const {login, setLogin} = useLogin();
 const [error, setError] = useState(false);
 const errorMesage = <div className="error">"Oops! That email and pasword combination is not valid."</div>;
 
@@ -16,9 +17,10 @@ const errorMesage = <div className="error">"Oops! That email and pasword combina
 const handleLogin = async (e) => {
   e.preventDefault();
     console.log(user);
+    
     const optimist_api_key = '7prQ7FbeO9bvbdPjMCl6';
     try {
-      let res = await fetch('https://testproject.optimistinc.com/api/login', {
+      const res = await fetch('https://testproject.optimistinc.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,19 +28,21 @@ const handleLogin = async (e) => {
         },
         body: JSON.stringify(user),
       })
-      
-      if (res.status === 200) {
-        let resJson = await res.json();
-        alert("You are logged in.")
-        window.location = 'dashboard';
+      if (res.status !== 200) {
+        setError(true);
       }
-      else { 
+
+      const data = await res.json();
+        alert("You are logged in.");
+        setLogin(data);
+        console.log(login);
+        // store the user in localStorage
+        localStorage.setItem('user', JSON.stringify(data));
         
-        // Error message shows when user try to log in with invalid data
-        setError(true);}
-    }
-    catch (err) {console.log(err)}
-  };
+        console.log(data);
+        /* window.location.reload(); */
+      }
+    catch (exception) {console.log(res)}}
     
 
     return <main>

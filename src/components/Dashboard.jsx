@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LoginContext, useLogin } from '../login-context';
 import ClassItem from './ClassItem';
 import './Dashboard.css';
 
@@ -6,6 +7,21 @@ const Dashboard = () => {
     const [classes, setClasses] = useState([]);
     const [tabs, setTabs] = useState(true);
     const [classesList, setClassesList] = useState("all");
+    const {login, logout} = useLogin();
+    const {first_name, last_name} = login;
+    const getName = () => {
+        if (last_name !== "") {
+            return first_name + " " + last_name
+        }
+        return first_name
+    }
+    const getInitials = () => {
+        if (last_name !== "") {
+            return first_name.charAt(0) + last_name.charAt(0)
+        }
+        return first_name.charAt(0)
+    }
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,7 +57,16 @@ else if (classesList === "future") return futureClasses.map(({ _id, classname, d
 
 const handleSelect = (e) => {
 setClassesList(e.target.value);
-}         
+}
+
+const handleLogout = (e) => {
+   if (e.target.value === "logout") {
+    logout();
+   }
+}
+
+
+
 
 return <div className='class container'>
 
@@ -49,9 +74,12 @@ return <div className='class container'>
 <header>
 <div className='logo'>Classy.io</div>
 <div className='user-controls'>
-<span className='user'>TW</span>
-<span className='user-fullname'>Tom Watts</span>
-<span className='arrow user'></span>
+<span className='user'>{getInitials()}</span>
+<span className='user-fullname'>{getName()}</span>
+<select className='user-logout' onChange={handleLogout}>
+    <option hidden defaultChecked></option>
+    <option value="logout">Logout</option>
+</select>
 </div>
 </header>
 

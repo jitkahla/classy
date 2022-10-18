@@ -145,3 +145,15 @@ input {
     
 }
 
+@media (min-width: 900px) {
+    .panel-container {
+      width: 35vw;
+      font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 1000px) {
+  .panel-container {
+    font-size: 2rem;
+  }
+}
