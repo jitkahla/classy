@@ -9,7 +9,7 @@ const [user, setUser] = useState({
     email: "",
     password: ""
 });
-const {login, setLogin} = useLogin();
+const {setLogin} = useLogin();
 const [error, setError] = useState(false);
 const errorMesage = <div className="error">"Oops! That email and pasword combination is not valid."</div>;
 
@@ -33,14 +33,13 @@ const handleLogin = async (e) => {
       }
 
       const data = await res.json();
-        alert("You are logged in.");
+        
         setLogin(data);
-        console.log(login);
+        
         // store the user in localStorage
         localStorage.setItem('user', JSON.stringify(data));
         
-        console.log(data);
-        /* window.location.reload(); */
+        window.location.reload();
       }
     catch (exception) {console.log(res)}}
     

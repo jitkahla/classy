@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SignForm.css';
+import { useLogin } from '../login-context';
 
 const SignUp = () => {
 
@@ -15,7 +16,9 @@ const [error, setError] = useState(false);
 
 const errorMesage = <p className="error">"Oops! Passwords don't match."</p>;
 
-const handleSignUp = (e) => {
+const {setLogin} = useLogin();
+
+const handleSignUp = async (e) => {
     e.preventDefault();
     if (user.password !== user.repassword) {
         
@@ -30,7 +33,9 @@ const handleSignUp = (e) => {
     console.log(user);
 // calling API
 const optimist_api_key = '7prQ7FbeO9bvbdPjMCl6';
-fetch('https://testproject.optimistinc.com/api/signup', {
+
+try {
+    const res = await fetch('https://testproject.optimistinc.com/api/signup', {
     method: 'POST',
     headers: {
       'optimist_api_key': optimist_api_key,
@@ -38,15 +43,19 @@ fetch('https://testproject.optimistinc.com/api/signup', {
     },
     body: JSON.stringify(user),
   })
-  .then((response) => response.json)
-  .then((result) => {
-  if (result.id !== "") {
-    alert("Thank you. Your registration was successful.");
-    
-    window.location = 'dashboard'
+
+  if (res.status !== 200) {
+    setError(true);
   }
-  });   
-  }
+  const data = await res.json();
+  setLogin(data);
+
+   // store the user in localStorage
+    localStorage.setItem('user', JSON.stringify(data));
+
+    window.location.reload();
+}
+catch (exception) {console.log(res)}}
 
 
     return <main>
