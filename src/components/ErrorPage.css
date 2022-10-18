@@ -1,0 +1,7 @@
+main {
+    margin: auto 4rem;
+}
+
+.refresh {
+    background-color: var(--dark-grey);
+}

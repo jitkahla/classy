@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignForm from './components/SignForm';
 import Dashboard from './components/Dashboard';
 import { LoginContext } from './login-context';
+import ErrorPage from './components/ErrorPage';
 
 
 const App = () => {
@@ -42,9 +43,10 @@ createRoot(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-      <Route index element={<App />}></Route>
+      <Route path='/' element={<App />}></Route>
       <Route path='signform' element={<SignForm />}></Route>
       <Route path='dashboard' element={<Dashboard />}></Route>
+      <Route path='*' element={<ErrorPage />}></Route>
     </Routes>
     </BrowserRouter>
   </React.StrictMode>
